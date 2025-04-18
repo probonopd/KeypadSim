@@ -7,9 +7,24 @@ KeypadSim is an Arduino library for simulating a 4x3 matrix keypad. It allows yo
 - Non-blocking operation (call `loop()` regularly)
 - Command queue for multiple keypresses
 
-## Usage
+## Installation
 
-### Wiring
+### Arduino IDE
+
+To use this library with the Arduino IDE, follow these steps:
+1. Go to Sketch > Include Library > Manage Libraries.
+2. In the Library Manager, search for "KeypadSim".
+3. Click on the "Install" button next to the KeypadSim library.
+
+### PlatformIO
+
+To use this library with PlatformIO, add the following to your `platformio.ini` file:
+
+```ini
+lib_deps = 
+    https://github.com/probonopd/KeypadSim
+```
+## Wiring
 
 Connect your Arduino to a device that would normally be controlling a matrix keypad as shown below.
 
@@ -43,6 +58,11 @@ Keypad (front view)
 | COL2        | D10          | purple     |
 
 Wire the keypad rows and columns to the Arduino digital pins as shown above. Use the suggested wire colors for easier identification.
+
+## Usage
+
+The KeypadSim library allows you to simulate keypresses programmatically. To use it, create an instance of the `KeypadSim` class and call the `loop()` method regularly to process queued keypresses.
+See the examples for more details.
 
 ## ScanMode
 
