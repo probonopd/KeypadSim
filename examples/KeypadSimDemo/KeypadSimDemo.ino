@@ -13,8 +13,7 @@ const byte ROWS = 4;
 const byte COLS = 3;
 const byte rowPins[ROWS] = {4, 5, 6, 7};
 const byte colPins[COLS] = {8, 9, 10};
-KeypadSim keypad(rowPins, ROWS, colPins, COLS, KEYPAD_LAYOUT, COLS_PULSED_ROWS_READ);
-
+KeypadSim keypad(rowPins, ROWS, colPins, COLS, KEYPAD_LAYOUT, ROWS_PULSED_COLS_READ);
 void setup() {
   Serial.begin(9600);
   while (!Serial) { ; }  // Wait for native USB
