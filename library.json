@@ -1,7 +1,7 @@
 {
   "name": "KeypadSim",
   "version": "1.0.0",
-  "description": "Simulate amatrix keypad.",
+  "description": "Simulate a matrix keypad.",
   "keywords": ["keypad", "simulation", "matrix", "automation"],
   "repository": {
     "type": "git",
@@ -14,5 +14,5 @@
   ],
   "license": "MIT",
   "frameworks": ["arduino"],
-  "platforms": ["*"]
+  "platforms": ["atmelavr", "atmelsam"]
 }
