@@ -1,7 +1,7 @@
 {
   "name": "KeypadSim",
   "version": "1.0.0",
-  "description": "Simulate a 4x3 matrix keypad for Arduino Uno, Zero, and compatible boards.",
+  "description": "Simulate amatrix keypad.",
   "keywords": ["keypad", "simulation", "matrix", "automation"],
   "repository": {
     "type": "git",
