@@ -9,27 +9,12 @@ KeypadSim is an Arduino library for simulating a 4x3 matrix keypad. It allows yo
 
 ## Usage
 
-### 1. Wiring
+### Wiring
 Connect your Arduino to a device that would normally be controlling a matrix keypad as shown below.
 
-```
-Keypad Pins:         Arduino Pins:      Wire Color
-
-[ROW0] ------------- D4                brown
-[ROW1] ------------- D5                red
-[ROW2] ------------- D6                orange
-[ROW3] ------------- D7                yellow
-
-[COL0] ------------- D8                green
-[COL1] ------------- D9                blue
-[COL2] ------------- D10               purple
-```
-
-// Rows: brown, red, orange, yellow
-// Columns: green, blue, purple
-
-```
 Keypad (front view)
+
+```
 +---+---+---+
 | 1 | 2 | 3 |   ROW0 (D4, brown)
 +---+---+---+
@@ -46,9 +31,19 @@ Keypad (front view)
 |   +---------- COL0 (D8, green)
 ```
 
-Wire the keypad rows and columns to the Tuino096 digital pins as shown above. Use the suggested wire colors for easier identification.
+| Keypad Pins | Arduino Pins | Wire Color |
+|-------------|--------------|------------|
+| ROW0        | D4           | brown      |
+| ROW1        | D5           | red        |
+| ROW2        | D6           | orange     |
+| ROW3        | D7           | yellow     |
+| COL0        | D8           | green      |
+| COL1        | D9           | blue       |
+| COL2        | D10          | purple     |
 
-### 2. Example Sketch
+Wire the keypad rows and columns to the Arduino digital pins as shown above. Use the suggested wire colors for easier identification.
+
+### Example Sketch
 See `examples/KeypadSimDemo/KeypadSimDemo.ino` for a complete example. Basic usage:
 
 ```cpp
@@ -76,13 +71,6 @@ void loop() {
   }
 }
 ```
-
-### 3. API
-- `KeypadSim(const byte rowPins[ROWS], const byte colPins[COLS], unsigned long keyPressDurationMs = 10)`
-- `void begin()`
-- `void loop()`
-- `void queueKey(char key)`
-- `bool isIdle() const`
 
 ## License
 MIT
