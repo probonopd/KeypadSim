@@ -1,9 +1,9 @@
 # KeypadSim Arduino Library
 
-KeypadSim is an Arduino library for simulating a 4x3 matrix keypad. It allows you to queue keypresses programmatically, making it ideal for testing, automation, or simulating user input on devices that expect a physical keypad.
+KeypadSim is an Arduino library for simulating a matrix keypad. It allows you to queue keypresses programmatically, making it ideal for testing, automation, or simulating user input on devices that expect a physical keypad.
 
 ## Features
-- Simulate keypresses for a 4x3 matrix keypad (keys: 0-9, C, R)
+- Simulate keypresses for a matrix keypad
 - Non-blocking operation (call `loop()` regularly)
 - Command queue for multiple keypresses
 
