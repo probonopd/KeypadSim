@@ -5,22 +5,16 @@
 
 class KeypadSim {
 public:
-    static const byte ROWS = 4;
-    static const byte COLS = 3;
-
-    KeypadSim(const byte rowPins[ROWS], const byte colPins[COLS], unsigned long keyPressDurationMs = 10);
+    KeypadSim(const byte* rowPins, byte numRows, const byte* colPins, byte numCols, const char* keyLayout, unsigned long keyPressDurationMs = 10);
     void begin();
     void loop();
     void queueKey(char key);
     bool isIdle() const;
 
 private:
-    char keys[ROWS][COLS] = {
-        { '1','2','3' },
-        { '4','5','6' },
-        { '7','8','9' },
-        { 'C','0','R' }
-    };
+    const char* keys = nullptr; // Pointer to key layout (row-major order)
+    byte nRows = 0;
+    byte nCols = 0;
     char commandBuffer[16];
     uint8_t bufHead = 0, bufTail = 0;
     int currentKeyRow = -1;
@@ -28,8 +22,10 @@ private:
     bool waitingForRowPulse = false;
     unsigned long keyPressLatchTime = 0;
     unsigned long keyPressDuration;
-    byte rowPins[ROWS];
-    byte colPins[COLS];
+    byte rowPinsStorage[8]; // Support up to 8 rows
+    byte colPinsStorage[8]; // Support up to 8 cols
+    const byte* rowPins = nullptr;
+    const byte* colPins = nullptr;
 
     void enqueueCommand(char c);
     bool dequeueCommand(char &out);

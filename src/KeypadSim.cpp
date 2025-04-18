@@ -1,16 +1,18 @@
 #include "KeypadSim.h"
 
-KeypadSim::KeypadSim(const byte rowPinsIn[ROWS], const byte colPinsIn[COLS], unsigned long keyPressDurationMs)
-    : keyPressDuration(keyPressDurationMs) {
-    for (byte i = 0; i < ROWS; i++) rowPins[i] = rowPinsIn[i];
-    for (byte j = 0; j < COLS; j++) colPins[j] = colPinsIn[j];
+KeypadSim::KeypadSim(const byte* rowPinsIn, byte numRows, const byte* colPinsIn, byte numCols, const char* keyLayout, unsigned long keyPressDurationMs)
+    : keys(keyLayout), nRows(numRows), nCols(numCols), keyPressDuration(keyPressDurationMs) {
+    for (byte i = 0; i < nRows && i < 8; i++) rowPinsStorage[i] = rowPinsIn[i];
+    for (byte j = 0; j < nCols && j < 8; j++) colPinsStorage[j] = colPinsIn[j];
+    rowPins = rowPinsStorage;
+    colPins = colPinsStorage;
 }
 
 void KeypadSim::begin() {
-    for (byte i = 0; i < ROWS; i++) {
+    for (byte i = 0; i < nRows; i++) {
         pinMode(rowPins[i], INPUT_PULLUP);
     }
-    for (byte j = 0; j < COLS; j++) {
+    for (byte j = 0; j < nCols; j++) {
         pinMode(colPins[j], INPUT_PULLUP);
     }
     bufHead = bufTail = 0;
@@ -43,22 +45,19 @@ bool KeypadSim::dequeueCommand(char &out) {
 
 void KeypadSim::simulateKeyPress(char key) {
     int row = -1, col = -1;
-    switch (key) {
-        case '1': row=0; col=0; break;
-        case '2': row=0; col=1; break;
-        case '3': row=0; col=2; break;
-        case '4': row=1; col=0; break;
-        case '5': row=1; col=1; break;
-        case '6': row=1; col=2; break;
-        case '7': row=2; col=0; break;
-        case '8': row=2; col=1; break;
-        case '9': row=2; col=2; break;
-        case 'C': case 'c': row=3; col=0; break;
-        case '0':           row=3; col=1; break;
-        case 'R': case 'r': row=3; col=2; break;
-        default:
-            // Invalid key, ignore
-            return;
+    for (byte r = 0; r < nRows; r++) {
+        for (byte c = 0; c < nCols; c++) {
+            if (keys[r * nCols + c] == key) {
+                row = r;
+                col = c;
+                break;
+            }
+        }
+        if (row != -1) break;
+    }
+    if (row == -1 || col == -1) {
+        // Invalid key, ignore
+        return;
     }
     currentKeyRow = row;
     currentKeyCol = col;
