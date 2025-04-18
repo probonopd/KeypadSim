@@ -1,6 +1,6 @@
 #include "KeypadSim.h"
 
-KeypadSim::KeypadSim(const byte* rowPinsIn, byte numRows, const byte* colPinsIn, byte numCols, const char* keyLayout, unsigned long keyPressDurationMs, ScanMode scanModeIn)
+KeypadSim::KeypadSim(const byte* rowPinsIn, byte numRows, const byte* colPinsIn, byte numCols, const char* keyLayout, ScanMode scanModeIn, unsigned long keyPressDurationMs)
     : keys(keyLayout), nRows(numRows), nCols(numCols), scanMode(scanModeIn),keyPressDuration(keyPressDurationMs) {
     for (byte i = 0; i < nRows && i < 8; i++) rowPinsStorage[i] = rowPinsIn[i];
     for (byte j = 0; j < nCols && j < 8; j++) colPinsStorage[j] = colPinsIn[j];
