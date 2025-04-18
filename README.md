@@ -60,17 +60,19 @@ KeypadSim keypad(rowPins, colPins);
 
 void setup() {
   Serial.begin(9600);
-  while (!Serial) {
-    ; // Wait for serial port to connect. Needed for native USB port only
-  }
+  while (!Serial) { ; }  // Wait for native USB
   keypad.begin();
+  Serial.println("KeypadSim ready. Type keys (0-9, C, R) and press Enter.");
 }
 
 void loop() {
   keypad.loop();
   if (Serial.available()) {
     char c = Serial.read();
-    keypad.queueKey(c); // Queue key from Serial
+    if (c == '\n' || c == '\r') return;
+    keypad.queueKey(c);
+    Serial.print("Queued key: ");
+    Serial.println(c);
   }
 }
 ```

@@ -1,8 +1,8 @@
 // KeypadSimDemo.ino - Example usage of KeypadSim library
 #include <KeypadSim.h>
 
-const byte rowPins[KeypadSim::ROWS] = {2, 3, 4, 5};
-const byte colPins[KeypadSim::COLS] = {6, 7, 8};
+const byte rowPins[KeypadSim::ROWS] = {4, 5, 6, 7};
+const byte colPins[KeypadSim::COLS] = {8, 9, 10};
 KeypadSim keypad(rowPins, colPins);
 
 void setup() {
