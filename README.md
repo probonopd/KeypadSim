@@ -10,6 +10,7 @@ KeypadSim is an Arduino library for simulating a 4x3 matrix keypad. It allows yo
 ## Usage
 
 ### Wiring
+
 Connect your Arduino to a device that would normally be controlling a matrix keypad as shown below.
 
 Keypad (front view)
@@ -43,34 +44,15 @@ Keypad (front view)
 
 Wire the keypad rows and columns to the Arduino digital pins as shown above. Use the suggested wire colors for easier identification.
 
-### Example Sketch
-See `examples/KeypadSimDemo/KeypadSimDemo.ino` for a complete example. Basic usage:
 
-```cpp
-#include <KeypadSim.h>
+## Examples
 
-const byte rowPins[KeypadSim::ROWS] = {4, 5, 6, 7};
-const byte colPins[KeypadSim::COLS] = {8, 9, 10};
-KeypadSim keypad(rowPins, colPins);
+### KeypadSimDemo
+Demonstrates how to use the KeypadSim library to simulate keypresses on a 4x3 matrix keypad. This sketch allows you to queue keypresses via the serial monitor, which are then sent to the simulated keypad. Useful for testing and automation scenarios where you want to emulate user input programmatically.
 
-void setup() {
-  Serial.begin(9600);
-  while (!Serial) { ; }  // Wait for native USB
-  keypad.begin();
-  Serial.println("KeypadSim ready. Type keys (0-9, C, R) and press Enter.");
-}
-
-void loop() {
-  keypad.loop();
-  if (Serial.available()) {
-    char c = Serial.read();
-    if (c == '\n' || c == '\r') return;
-    keypad.queueKey(c);
-    Serial.print("Queued key: ");
-    Serial.println(c);
-  }
-}
-```
+### KeypadController
+Shows how to use the standard Keypad library to simulate a device that reads a physical keypad, such as a vending machine. This example demonstrates how to read keypresses from the simulated keypad, making it useful for simulating the device side of a keypad interface.
 
 ## License
+
 MIT
