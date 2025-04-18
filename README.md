@@ -48,8 +48,8 @@ Wire the keypad rows and columns to the Arduino digital pins as shown above. Use
 
 The `ScanMode` enum configures how the simulated keypad interacts with the controller:
 
-- `ROWS_PULSED_COLS_READ`: The controller pulses the rows LOW and reads the columns.
-- `COLS_PULSED_ROWS_READ`: The controller pulses the columns LOW and reads the rows.
+- `ROWS_PULSED_COLS_READ`: Use this if your controller (the device using the simulated keypad) pulses the rows LOW and reads the columns.
+- `COLS_PULSED_ROWS_READ`: Use this if your controller pulses the columns LOW and reads the rows.
 
 Specify the scan mode when constructing the `KeypadSim` object:
 
