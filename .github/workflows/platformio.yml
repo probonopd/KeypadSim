@@ -11,9 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform:
-          - atmelavr
-          - atmelsam
+        env:
+          - KeypadController_uno
+          - KeypadController_due
+          - KeypadController_ColsPulsed_uno
+          - KeypadController_ColsPulsed_due
+          - KeypadSimDemo_uno
+          - KeypadSimDemo_due
+          - KeypadSimDemo_ColsPulsed_uno
+          - KeypadSimDemo_ColsPulsed_due
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
@@ -23,4 +29,4 @@ jobs:
       - name: Install PlatformIO
         run: pip install platformio
       - name: Run PlatformIO build
-        run: pio run --environment ${{ matrix.platform }}
+        run: pio run -e ${{ matrix.env }}
