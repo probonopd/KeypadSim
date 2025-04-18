@@ -3,9 +3,14 @@
 
 #include <Arduino.h>
 
+enum ScanMode {
+    ROWS_PULSED_COLS_READ, // Rows are pulsed, columns are read
+    COLS_PULSED_ROWS_READ  // Columns are pulsed, rows are read
+};
+
 class KeypadSim {
 public:
-    KeypadSim(const byte* rowPins, byte numRows, const byte* colPins, byte numCols, const char* keyLayout, unsigned long keyPressDurationMs = 10);
+    KeypadSim(const byte* rowPins, byte numRows, const byte* colPins, byte numCols, const char* keyLayout, ScanMode scanMode, unsigned long keyPressDurationMs = 10);
     void begin();
     void loop();
     void queueKey(char key);
@@ -26,6 +31,7 @@ private:
     byte colPinsStorage[8]; // Support up to 8 cols
     const byte* rowPins = nullptr;
     const byte* colPins = nullptr;
+    ScanMode scanMode = ROWS_PULSED_COLS_READ;
 
     void enqueueCommand(char c);
     bool dequeueCommand(char &out);

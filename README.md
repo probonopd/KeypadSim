@@ -44,6 +44,20 @@ Keypad (front view)
 
 Wire the keypad rows and columns to the Arduino digital pins as shown above. Use the suggested wire colors for easier identification.
 
+## ScanMode
+
+The `ScanMode` enum configures how the simulated keypad interacts with the controller:
+
+- `ROWS_PULSED_COLS_READ`: The controller pulses the rows LOW and reads the columns.
+- `COLS_PULSED_ROWS_READ`: The controller pulses the columns LOW and reads the rows.
+
+Specify the scan mode when constructing the `KeypadSim` object:
+
+```cpp
+KeypadSim keypad(rowPins, numRows, colPins, numCols, keyLayout, ROWS_PULSED_COLS_READ);
+```
+
+Adjust the mode to match your hardware or simulation needs.
 
 ## Examples
 
