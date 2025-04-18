@@ -15,6 +15,7 @@ public:
     void loop();
     void queueKey(char key);
     bool isIdle() const;
+    void onKeySimulated(void (*callback)(char));
 
 private:
     const char* keys = nullptr; // Pointer to key layout (row-major order)
@@ -32,6 +33,7 @@ private:
     const byte* rowPins = nullptr;
     const byte* colPins = nullptr;
     ScanMode scanMode = ROWS_PULSED_COLS_READ;
+    void (*keySimCallback)(char) = nullptr;
 
     void enqueueCommand(char c);
     bool dequeueCommand(char &out);

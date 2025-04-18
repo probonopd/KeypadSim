@@ -14,10 +14,17 @@ const byte COLS = 3;
 const byte rowPins[ROWS] = {4, 5, 6, 7};
 const byte colPins[COLS] = {8, 9, 10};
 KeypadSim keypad(rowPins, ROWS, colPins, COLS, KEYPAD_LAYOUT, ROWS_PULSED_COLS_READ);
+
+void onSimulatedKey(char key) {
+  Serial.print("[Callback] Simulated key: ");
+  Serial.println(key);
+}
+
 void setup() {
   Serial.begin(9600);
   while (!Serial) { ; }  // Wait for native USB
   keypad.begin();
+  keypad.onKeySimulated(onSimulatedKey);
   Serial.println("KeypadSim ready. Type keys (0-9, C, R) and press Enter.");
 }
 

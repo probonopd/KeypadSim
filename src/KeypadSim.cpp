@@ -52,6 +52,10 @@ bool KeypadSim::dequeueCommand(char &out) {
     return true;
 }
 
+void KeypadSim::onKeySimulated(void (*callback)(char)) {
+    keySimCallback = callback;
+}
+
 void KeypadSim::simulateKeyPress(char key) {
     int row = -1, col = -1;
     for (byte r = 0; r < nRows; r++) {
@@ -71,6 +75,9 @@ void KeypadSim::simulateKeyPress(char key) {
     currentKeyRow = row;
     currentKeyCol = col;
     waitingForRowPulse = true;
+    if (keySimCallback) {
+        keySimCallback(key);
+    }
 }
 
 void KeypadSim::loop() {
