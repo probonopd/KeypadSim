@@ -1,0 +1,5 @@
+KeypadSim	KEYWORD1
+queueKey	KEYWORD2
+begin	KEYWORD2
+loop	KEYWORD2
+isIdle	KEYWORD2
