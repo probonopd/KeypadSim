@@ -27,6 +27,13 @@ void loop() {
   if (Serial.available()) {
     char c = Serial.read();
     if (c == '\n' || c == '\r') return;
+    
+    // Return if not one of the valid keys
+    if (strchr(KEYPAD_LAYOUT, c) == nullptr) {
+      Serial.println("Invalid key. Use 0-9, C, R.");
+      return;
+    }
+    
     keypad.queueKey(c);
     Serial.print("Queued key: ");
     Serial.println(c);
